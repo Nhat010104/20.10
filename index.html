@@ -169,11 +169,18 @@
         }
 
         .letter-content {
-            opacity: 0;
-            transition: opacity 0.8s ease 0.4s;
+            opacity: 1;
         }
 
-        .envelope.open .letter-content {
+        .letter-content.typing h2,
+        .letter-content.typing p,
+        .letter-content.typing .signature {
+            opacity: 0;
+        }
+
+        .letter-content.typing h2.show,
+        .letter-content.typing p.show,
+        .letter-content.typing .signature.show {
             opacity: 1;
         }
 
@@ -303,16 +310,16 @@
                 <div class="letter">
                     <button class="close-btn" id="closeBtn">×</button>
                     
-                    <div class="letter-content">
-                        <h2>Gửi Em</h2>
+                    <div class="letter-content" id="letterContent">
+                        <h2 data-text="Gửi Em"></h2>
                         
-                        <p>Giữa muôn vàn bông hoa rực rỡ, em vẫn luôn là đóa hoa đặc biệt nhất trong mắt anh. Chúc em luôn xinh đẹp, tự tin và tràn đầy năng lượng tích cực.</p>
+                        <p data-text="Giữa muôn vàn bông hoa rực rỡ, em vẫn luôn là đóa hoa đặc biệt nhất trong mắt anh. Chúc em luôn xinh đẹp, tự tin và tràn đầy năng lượng tích cực."></p>
                         
-                        <p>Mong rằng mỗi ngày đều mang đến cho em niềm vui, hạnh phúc và thật nhiều điều tốt đẹp. Cảm ơn vì đã luôn lan tỏa yêu thương và khiến cuộc sống này trở nên dịu dàng hơn.</p>
+                        <p data-text="Mong rằng mỗi ngày đều mang đến cho em niềm vui, hạnh phúc và thật nhiều điều tốt đẹp. Cảm ơn vì đã luôn lan tỏa yêu thương và khiến cuộc sống này trở nên dịu dàng hơn."></p>
                         
-                        <p>Anh sẽ luôn đồng hành cùng em. Chúc mừng ngày Phụ nữ Việt Nam 20/10!</p>
+                        <p data-text="Anh sẽ luôn đồng hành cùng em. Chúc mừng ngày Phụ nữ Việt Nam 20/10!"></p>
                         
-                        <div class="signature">Yêu Em Nhiều Lắm</div>
+                        <div class="signature" data-text="Yêu Em Nhiều Lắm"></div>
                     </div>
                 </div>
             </div>
@@ -333,12 +340,68 @@
             envelope.classList.remove('open');
             instruction.classList.remove('hidden');
             isOpen = false;
+            resetTyping();
         }
 
         function openLetter() {
             envelope.classList.add('open');
             instruction.classList.add('hidden');
             isOpen = true;
+            
+            // Bắt đầu hiệu ứng chữ chạy
+            setTimeout(() => {
+                typewriterEffect();
+            }, 600);
+        }
+
+        function typewriterEffect() {
+            const letterContent = document.getElementById('letterContent');
+            const elements = letterContent.querySelectorAll('[data-text]');
+            
+            letterContent.classList.add('typing');
+            
+            let currentElement = 0;
+            
+            function typeElement() {
+                if (currentElement >= elements.length) {
+                    letterContent.classList.remove('typing');
+                    return;
+                }
+                
+                const element = elements[currentElement];
+                const text = element.getAttribute('data-text');
+                element.textContent = '';
+                element.classList.add('show');
+                
+                let charIndex = 0;
+                
+                function typeChar() {
+                    if (charIndex < text.length) {
+                        element.textContent += text.charAt(charIndex);
+                        charIndex++;
+                        setTimeout(typeChar, 50); // 50ms mỗi chữ
+                    } else {
+                        currentElement++;
+                        setTimeout(typeElement, 300); // Đợi 300ms trước khi đoạn tiếp theo
+                    }
+                }
+                
+                typeChar();
+            }
+            
+            typeElement();
+        }
+
+        function resetTyping() {
+            const letterContent = document.getElementById('letterContent');
+            const elements = letterContent.querySelectorAll('[data-text]');
+            
+            letterContent.classList.remove('typing');
+            
+            elements.forEach(element => {
+                element.classList.remove('show');
+                element.textContent = element.getAttribute('data-text');
+            });
         }
 
         envelopeWrapper.addEventListener('click', function(e) {
