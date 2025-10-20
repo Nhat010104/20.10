@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Ngày 20/10 💝</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: float 8s infinite;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .title {
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 350px;
+            height: 220px;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #fff5f8 0%, #ffe5ec 50%, #fff5f8 100%);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(255,105,180,0.3);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .envelope-top {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 175px solid transparent;
+            border-right: 175px solid transparent;
+            border-bottom: 110px solid #ffb8c5;
+            top: 0;
+            left: 0;
+            transform-origin: top center;
+            transition: transform 0.6s ease;
+            z-index: 3;
+        }
+
+        .envelope.open .envelope-top {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #ffe9ee 0%, #ffd9e3 100%);
+            border-radius: 10px;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .envelope-body::after {
+            content: '💌';
+            font-size: 3.5em;
+            opacity: 0.4;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 175px solid transparent;
+            border-right: 175px solid transparent;
+            border-top: 110px solid #ff9fb0;
+            bottom: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        .letter {
+            position: fixed;
+            width: 300px;
+            height: 400px;
+            max-height: 80vh;
+            background: #ffffff;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+            transition: all 0.6s ease;
+            z-index: 100;
+            opacity: 0;
+            overflow-y: auto;
+            pointer-events: none;
+        }
+
+        .envelope.open .letter {
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .letter-content {
+            opacity: 0;
+            transition: opacity 0.8s ease 0.4s;
+        }
+
+        .envelope.open .letter-content {
+            opacity: 1;
+        }
+
+        .letter-content h2 {
+            color: #d63d6a;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .letter-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+            line-height: 1.8;
+            color: #444;
+            font-size: 14px;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 20px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 20px;
+            color: #d63d6a;
+            font-weight: 700;
+        }
+
+        .instruction {
+            color: white;
+            font-size: 1.2em;
+            margin-top: 30px;
+            animation: pulse 2s infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 500;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: #ff6b9d;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 101;
+        }
+
+        .close-btn:hover {
+            background: #ff5085;
+        }
+
+        .envelope.open .close-btn {
+            opacity: 1;
+            transition-delay: 0.6s;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            
+            .envelope-wrapper {
+                width: 280px;
+                height: 180px;
+            }
+            
+            .envelope-top {
+                border-left: 140px solid transparent;
+                border-right: 140px solid transparent;
+                border-bottom: 90px solid #ffb8c5;
+            }
+            
+            .envelope-flap {
+                border-left: 140px solid transparent;
+                border-right: 140px solid transparent;
+                border-top: 90px solid #ff9fb0;
+            }
+            
+            .letter {
+                width: 90%;
+                max-width: 300px;
+                height: auto;
+                max-height: 70vh;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="hearts-container"></div>
+
+    <div class="container">
+        <h1 class="title">💝 Chúc Mừng Ngày 20/10 💝</h1>
+        
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope" id="envelope">
+                <div class="envelope-body"></div>
+                <div class="envelope-flap"></div>
+                <div class="envelope-top"></div>
+                
+                <div class="letter">
+                    <button class="close-btn" id="closeBtn">×</button>
+                    
+                    <div class="letter-content">
+                        <h2>Gửi Em</h2>
+                        
+                        <p>Giữa muôn vàn bông hoa rực rỡ, em vẫn luôn là đóa hoa đặc biệt nhất trong mắt anh. Chúc em luôn xinh đẹp, tự tin và tràn đầy năng lượng tích cực.</p>
+                        
+                        <p>Mong rằng mỗi ngày đều mang đến cho em niềm vui, hạnh phúc và thật nhiều điều tốt đẹp. Cảm ơn vì đã luôn lan tỏa yêu thương và khiến cuộc sống này trở nên dịu dàng hơn.</p>
+                        
+                        <p>Anh sẽ luôn đồng hành cùng em. Chúc mừng ngày Phụ nữ Việt Nam 20/10!</p>
+                        
+                        <div class="signature">Yêu Em Nhiều Lắm</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="instruction" id="instruction">👆 Nhấn vào lá thư để mở</p>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const envelopeWrapper = document.getElementById('envelopeWrapper');
+        const instruction = document.getElementById('instruction');
+        const closeBtn = document.getElementById('closeBtn');
+        const letter = document.querySelector('.letter');
+        let isOpen = false;
+
+        function closeLetter() {
+            envelope.classList.remove('open');
+            instruction.classList.remove('hidden');
+            isOpen = false;
+        }
+
+        function openLetter() {
+            envelope.classList.add('open');
+            instruction.classList.add('hidden');
+            isOpen = true;
+        }
+
+        envelopeWrapper.addEventListener('click', function(e) {
+            if (!isOpen) {
+                openLetter();
+            }
+        });
+
+        // Click vào nút đóng
+        closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeLetter();
+        });
+
+        // Click vào bên ngoài lá thư để đóng
+        document.addEventListener('click', function(e) {
+            if (isOpen && !letter.contains(e.target) && !envelopeWrapper.contains(e.target)) {
+                closeLetter();
+            }
+        });
+
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const hearts = ['❤️', '💕', '💖', '💗', '💝'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 8000);
+            }, 1500);
+        }
+
+        createHearts();
+    </script>
+</body>
+</html>
